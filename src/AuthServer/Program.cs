@@ -1,4 +1,5 @@
 using AuthServer.Data;
+using AuthServer.Services;
 using Microsoft.EntityFrameworkCore;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
@@ -51,6 +52,8 @@ builder.Services.AddOpenIddict()
             .EnableUserInfoEndpointPassthrough()
             .EnableEndSessionEndpointPassthrough();
     });
+
+builder.Services.AddHostedService<OpenIddictSeeder>();
 
 var app = builder.Build();
 
