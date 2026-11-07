@@ -56,7 +56,7 @@ builder.Services.AddOpenIddict()
 
 builder.Services.AddHostedService<OpenIddictSeeder>();
 
-builder.Services.AddControllers();
+builder.Services.AddControllersWithViews();
 
 builder.Services
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

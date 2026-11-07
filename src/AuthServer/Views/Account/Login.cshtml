@@ -1,0 +1,28 @@
+@using AuthServer.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model LoginViewModel
+
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <title>Connexion</title>
+</head>
+<body>
+    <h1>Connexion</h1>
+    <form asp-controller="Account" asp-action="Login" method="post">
+        @* requis pour reporter explicitement ce paramètre qui provient de l'url, sinon on le perd..  *@
+        <input type="hidden" asp-for="ReturnUrl" />
+
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" />
+
+        <label asp-for="Password">Mot de passe</label>
+        <input asp-for="Password" />
+
+        <button type="submit">Se connecter</button>
+        
+        @* afficher les erreurs de validation du modèle en liste à puces *@
+        <div asp-validation-summary="ModelOnly"></div> 
+    </form>
+</body>
+<html/>
