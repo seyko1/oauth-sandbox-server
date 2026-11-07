@@ -56,7 +56,7 @@ builder.Services.AddOpenIddict()
 
 builder.Services.AddHostedService<OpenIddictSeeder>();
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(); // ajoute implicitement AddAntiforgery
 
 builder.Services
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
