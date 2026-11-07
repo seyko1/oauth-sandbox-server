@@ -1,5 +1,6 @@
 using AuthServer.Db;
 using AuthServer.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
@@ -57,9 +58,21 @@ builder.Services.AddHostedService<OpenIddictSeeder>();
 
 builder.Services.AddControllers();
 
+builder.Services
+    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath         = "/account/login";
+        options.ExpireTimeSpan    = TimeSpan.FromMinutes(30);
+        options.SlidingExpiration = true;
+    });
+
 var app = builder.Build();
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.MapControllers();
 
 app.Run();
